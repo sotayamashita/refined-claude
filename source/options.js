@@ -2,7 +2,7 @@ import { getSettings, saveSettings } from "./options-storage.js";
 
 // Generate HTML for template item
 function createTemplateHTML(template, index) {
-	return `
+  return `
 		<div class="template-item">
 			<div class="template-title">${template.title}</div>
 			<div class="template-content">${template.content}</div>
@@ -15,70 +15,71 @@ function createTemplateHTML(template, index) {
 
 // Display list of templates
 async function renderTemplates() {
-	try {
-		const container = document.getElementById("templates-container");
-		const settings = await getSettings();
-		container.innerHTML = settings.templates
-			.map(createTemplateHTML)
-			.join("");
-	} catch (error) {
-		console.error('Failed to render templates:', error);
-	}
+  try {
+    const container = document.getElementById("templates-container");
+    const settings = await getSettings();
+    container.innerHTML = settings.templates.map(createTemplateHTML).join("");
+  } catch (error) {
+    console.error("Failed to render templates:", error);
+  }
 }
 
 // Generalize settings update
 async function updateSettings(updateFn) {
-	try {
-		const settings = await getSettings();
-		updateFn(settings);
-		await saveSettings(settings);
-		await renderTemplates();
-	} catch (error) {
-		console.error('Failed to update settings:', error);
-	}
+  try {
+    const settings = await getSettings();
+    updateFn(settings);
+    await saveSettings(settings);
+    await renderTemplates();
+  } catch (error) {
+    console.error("Failed to update settings:", error);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-	try {
-		const settings = await getSettings();
-		
-		// Initialize and set checkbox
-		const checkbox = document.querySelector('input[type="checkbox"]');
-		checkbox.checked = settings.useCtrlEnterToSend;
-		
-		checkbox.addEventListener("change", (e) => {
-			updateSettings(settings => {
-				settings.useCtrlEnterToSend = e.target.checked;
-			});
-		});
+  try {
+    const settings = await getSettings();
 
-		await renderTemplates();
+    // Initialize and set checkbox
+    const checkbox = document.querySelector(
+      'input[name="preventEnterPropagation"]',
+    );
+    checkbox.checked = settings.preventEnterPropagation;
 
-		// Handler for adding templates
-		document.getElementById("options-form")
-			.addEventListener("submit", async (e) => {
-				e.preventDefault();
-				const title = document.getElementById("template-title").value;
-				const content = document.getElementById("template-content").value;
+    checkbox.addEventListener("change", (e) => {
+      updateSettings((settings) => {
+        settings.preventEnterPropagation = e.target.checked;
+      });
+    });
 
-				await updateSettings(settings => {
-					settings.templates.push({ title, content });
-				});
-				e.target.reset();
-			});
+    await renderTemplates();
 
-		// Handler for delete button
-		document.getElementById("templates-container")
-			.addEventListener("click", (e) => {
-				if (e.target.classList.contains("delete-button")) {
-					const index = parseInt(e.target.dataset.index, 10);
-					updateSettings(settings => {
-						settings.templates.splice(index, 1);
-					});
-				}
-			});
+    // Handler for adding templates
+    document
+      .getElementById("options-form")
+      .addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const title = document.getElementById("template-title").value;
+        const content = document.getElementById("template-content").value;
 
-	} catch (error) {
-		console.error('Failed to initialize options:', error);
-	}
+        await updateSettings((settings) => {
+          settings.templates.push({ title, content });
+        });
+        e.target.reset();
+      });
+
+    // Handler for delete button
+    document
+      .getElementById("templates-container")
+      .addEventListener("click", (e) => {
+        if (e.target.classList.contains("delete-button")) {
+          const index = parseInt(e.target.dataset.index, 10);
+          updateSettings((settings) => {
+            settings.templates.splice(index, 1);
+          });
+        }
+      });
+  } catch (error) {
+    console.error("Failed to initialize options:", error);
+  }
 });

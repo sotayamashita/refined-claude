@@ -1,30 +1,30 @@
 .template-item {
-	border: 1px solid var(--in-content-box-border-color);
-	border-radius: 2px;
-	padding: 1em;
-	margin: 1em 0;
+  border: 1px solid var(--in-content-box-border-color);
+  border-radius: 2px;
+  padding: 1em;
+  margin: 1em 0;
 }
 
 .template-content {
-	font-size: 0.9em;
-	color: var(--in-content-deemphasized-text);
-	margin: 0.5em 0;
-	white-space: pre-wrap;
+  font-size: 0.9em;
+  color: var(--in-content-deemphasized-text);
+  margin: 0.5em 0;
+  white-space: pre-wrap;
 }
 
 .template-actions {
-	display: flex;
-	gap: 0.5em;
+  display: flex;
+  gap: 0.5em;
 }
 
 .delete-button {
-	background: var(--in-content-button-background);
-	color: var(--in-content-text-color);
-	border: 1px solid var(--in-content-box-border-color);
-	padding: 0.25em 0.5em;
-	border-radius: 2px;
+  background: var(--in-content-button-background);
+  color: var(--in-content-text-color);
+  border: 1px solid var(--in-content-box-border-color);
+  padding: 0.25em 0.5em;
+  border-radius: 2px;
 }
 
 .delete-button:hover {
-	background: var(--in-content-button-background-hover);
+  background: var(--in-content-button-background-hover);
 }
