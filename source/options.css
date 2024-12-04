@@ -64,3 +64,42 @@ input[type='text'] {
 		display: block;
 	}
 }
+
+.template-list-header {
+	margin-top: 2em;
+}
+
+.template-item {
+	border: 1px solid var(--in-content-box-border-color);
+	margin: 1em 0;
+}
+
+.template-title {
+	font-size: 1em;
+	font-weight: bold;
+	color: var(--in-content-deemphasized-text);
+}
+
+.template-content {
+	font-size: 0.9em;
+	color: var(--in-content-deemphasized-text);
+	margin: 0.5em 0;
+	white-space: pre-wrap;
+}
+
+.template-actions {
+	display: flex;
+	gap: 0.5em;
+}
+
+.delete-button {
+	background: #ff4d4d;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	transition: background 0.3s;
+}
+
+.delete-button:hover {
+	background: #e60000;
+}
