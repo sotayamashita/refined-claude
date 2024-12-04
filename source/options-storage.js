@@ -21,15 +21,33 @@ export async function saveSettings(settings) {
 	await chrome.storage.sync.set(settings);
 }
 
-// Template management functions
+// Template management functions with improved error handling
 export async function addTemplate(title, content) {
-	const settings = await getSettings();
-	settings.templates.push({title, content});
-	await saveSettings(settings);
+	if (!title || !content) {
+		throw new Error('Template title and content are required');
+	}
+
+	try {
+		const settings = await getSettings();
+		settings.templates.push({title, content});
+		await saveSettings(settings);
+	} catch (error) {
+		console.error('Failed to add template:', error);
+		throw error;
+	}
 }
 
 export async function deleteTemplate(index) {
-	const settings = await getSettings();
-	settings.templates.splice(index, 1);
-	await saveSettings(settings);
+	try {
+		const settings = await getSettings();
+		if (index < 0 || index >= settings.templates.length) {
+			throw new Error('Invalid template index');
+		}
+
+		settings.templates.splice(index, 1);
+		await saveSettings(settings);
+	} catch (error) {
+		console.error('Failed to delete template:', error);
+		throw error;
+	}
 }
