@@ -1,5 +1,7 @@
 # browser-extension-template
 
+[![Test](https://github.com/sotayamashita/refined-claude/actions/workflows/test.yml/badge.svg)](https://github.com/sotayamashita/refined-claude/actions/workflows/test.yml)
+
 [link-rgh]: https://github.com/sindresorhus/refined-github
 [link-ngh]: https://github.com/sindresorhus/notifier-for-github
 [link-hfog]: https://github.com/sindresorhus/hide-files-on-github
