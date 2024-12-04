@@ -9,7 +9,8 @@
     "lint:js": "xo",
     "test": "run-p lint:* build",
     "watch": "NODE_NO_WARNINGS=1 parcel watch --no-hmr",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "browserslist": [
     "last 1 Chrome version",
@@ -37,6 +38,8 @@
   "devDependencies": {
     "@parcel/config-webextension": "^2.13.0",
     "@parcel/resolver-default": "^2.13.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10",
     "npm-run-all2": "^7.0.1",
     "parcel": "^2.13.0",
     "prettier": "3.4.2",
@@ -61,5 +64,8 @@
         "https://claude.ai"
       ]
     }
+  },
+  "lint-staged": {
+    "*.{js,css}": "prettier --write"
   }
 }
