@@ -170,7 +170,6 @@ async function createDropdownContent() {
 	);
 	settingsButton.addEventListener('click', () => {
 		chrome.runtime.sendMessage({action: 'openOptions'});
-		dropdownWrapper.remove();
 	});
 
 	return dropdown;
@@ -255,8 +254,8 @@ async function initializeTemplateButton() {
 		dropdownWrapper.style.opacity = '1';
 
 		// Close dropdown when clicking outside
-		const closeDropdown = e => {
-			if (!dropdown.contains(e.target) && !templateButton.contains(e.target)) {
+		const closeDropdown = event => {
+			if (!dropdown.contains(event.target) && !templateButton.contains(event.target)) {
 				dropdownWrapper.remove();
 				document.removeEventListener('click', closeDropdown);
 			}
@@ -298,6 +297,10 @@ function waitForElement(selector, timeout = 5000) {
 	});
 }
 
+const sleep = ms => new Promise(resolve => {
+	setTimeout(resolve, ms);
+});
+
 // Initialize when page is ready
 async function initialize() {
 	try {
@@ -305,7 +308,7 @@ async function initialize() {
 		await waitForElement('[data-testid="style-selector-dropdown"]');
 
 		// Wait a bit more to ensure all dynamic content is loaded
-		await new Promise(resolve => setTimeout(resolve, 500));
+		await sleep(500);
 
 		// Initialize the template button
 		await initializeTemplateButton();
@@ -330,13 +333,3 @@ new MutationObserver(() => {
 		initialize();
 	}
 }).observe(document, {subtree: true, childList: true});
-
-function setContent(editorView, content) {
-	editorView.dispatch(
-		editorView.state.tr.replaceWith(
-			0,
-			editorView.state.doc.content.size,
-			editorView.state.schema.text(content),
-		),
-	);
-}

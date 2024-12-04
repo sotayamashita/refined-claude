@@ -18,7 +18,7 @@ async function renderTemplates() {
 	try {
 		const container = document.querySelector('#templates-container');
 		const settings = await getSettings();
-		container.innerHTML = settings.templates.map(createTemplateHTML).join('');
+		container.innerHTML = settings.templates.map((template, index) => createTemplateHTML(template, index)).join('');
 	} catch (error) {
 		console.error('Failed to render templates:', error);
 	}
@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 		);
 		checkbox.checked = settings.preventEnterPropagation;
 
-		checkbox.addEventListener('change', e => {
+		checkbox.addEventListener('change', event => {
 			updateSettings(settings => {
-				settings.preventEnterPropagation = e.target.checked;
+				settings.preventEnterPropagation = event.target.checked;
 			});
 		});
 
@@ -57,23 +57,23 @@ document.addEventListener('DOMContentLoaded', async () => {
 		// Handler for adding templates
 		document
 			.querySelector('#options-form')
-			.addEventListener('submit', async e => {
-				e.preventDefault();
+			.addEventListener('submit', async event => {
+				event.preventDefault();
 				const title = document.querySelector('#template-title').value;
 				const content = document.querySelector('#template-content').value;
 
 				await updateSettings(settings => {
 					settings.templates.push({title, content});
 				});
-				e.target.reset();
+				event.target.reset();
 			});
 
 		// Handler for delete button
 		document
 			.querySelector('#templates-container')
-			.addEventListener('click', e => {
-				if (e.target.classList.contains('delete-button')) {
-					const index = Number.parseInt(e.target.dataset.index, 10);
+			.addEventListener('click', event => {
+				if (event.target.classList.contains('delete-button')) {
+					const index = Number.parseInt(event.target.dataset.index, 10);
 					updateSettings(settings => {
 						settings.templates.splice(index, 1);
 					});
