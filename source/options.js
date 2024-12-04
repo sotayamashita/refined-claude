@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-unassigned-import
+import 'webext-base-css';
+import './options.css';
 import {getSettings, saveSettings} from './options-storage.js';
 
 // Generate HTML for template item
@@ -38,20 +41,6 @@ async function updateSettings(updateFunction) {
 
 document.addEventListener('DOMContentLoaded', async () => {
 	try {
-		const settings = await getSettings();
-
-		// Initialize and set checkbox
-		const checkbox = document.querySelector(
-			'input[name="preventEnterPropagation"]',
-		);
-		checkbox.checked = settings.preventEnterPropagation;
-
-		checkbox.addEventListener('change', event => {
-			updateSettings(settings => {
-				settings.preventEnterPropagation = event.target.checked;
-			});
-		});
-
 		await renderTemplates();
 
 		// Handler for adding templates

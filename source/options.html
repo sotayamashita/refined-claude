@@ -4,42 +4,27 @@
 <link rel="stylesheet" href="options.css" />
 
 <form id="options-form" class="detail-view-container">
-  <h1>Refined Claude Settings</h1>
+	<h1>Refined Claude Settings</h1>
+	<section>
+		<h2>New Template</h2>
 
-  <section>
-    <h2>Settings</h2>
-    <div class="row">
-      <label>
-        <input type="checkbox" name="preventEnterPropagation" />
-        Prevent Enter key from submitting messages
-      </label>
-    </div>
-  </section>
+		<!-- Template input form -->
+		<div class="row">
+			<label for="template-title">Title</label>
+			<input type="text" id="template-title" name="title" required />
+		</div>
+		<div class="row">
+			<label for="template-content">Content</label>
+			<textarea id="template-content" name="content" rows="8" required></textarea>
+		</div>
+		<div class="row">
+			<button type="submit" class="browser-style">Add Template</button>
+		</div>
 
-  <section>
-    <h2>Templates</h2>
-
-    <!-- Template input form -->
-    <div class="row">
-      <label for="template-title">Title</label>
-      <input type="text" id="template-title" name="title" required />
-    </div>
-    <div class="row">
-      <label for="template-content">Content</label>
-      <textarea
-        id="template-content"
-        name="content"
-        rows="4"
-        required
-      ></textarea>
-    </div>
-    <div class="row">
-      <button type="submit" class="browser-style">Add Template</button>
-    </div>
-
-    <!-- Template list -->
-    <div id="templates-container"></div>
-  </section>
+		<!-- Template list -->
+		<h2 class="template-list-header">Template List</h2>
+		<div id="templates-container"></div>
+	</section>
 </form>
 
 <script src="options.js" type="module"></script>

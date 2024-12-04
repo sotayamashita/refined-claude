@@ -9,7 +9,6 @@ const defaultTemplates = [
 
 const defaultSettings = {
 	templates: defaultTemplates,
-	preventEnterPropagation: true,
 };
 
 // Helper functions for storage operations
