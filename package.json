@@ -30,19 +30,30 @@
     "rules": {}
   },
   "dependencies": {
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "webext-base-css": "^2.0.1",
     "webext-options-sync": "^4.2.3"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.23.3",
     "@parcel/config-webextension": "^2.13.0",
     "@parcel/resolver-default": "^2.13.0",
     "npm-run-all2": "^7.0.1",
     "parcel": "^2.13.0",
     "prettier": "3.4.2",
+    "process": "^0.11.10",
     "stylelint": "^16.6.1",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-xo": "^1.0.2",
     "xo": "^0.59.3"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ]
   },
   "@parcel/resolver-default": {
     "packageExports": true
