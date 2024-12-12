@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {getSettings} from '../options-storage.js';
 
 export const TemplateDropdown = ({onClose, position}) => {

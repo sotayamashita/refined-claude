@@ -6,18 +6,11 @@ import './options.css';
 
 // Main App component
 const App = () => (
-	<div className='detail-view-container'>
-		<h1>Refined Claude Settings</h1>
-		<a href='https://claude.ai' target='_blank' rel='noopener noreferrer'>
-			Open Claude in a new tab
-		</a>
-		<section>
-			<TemplateForm />
-		</section>
+	<div className='container'>
+		<TemplateForm />
 	</div>
 );
 
 // Initialize React app
-const container = document.querySelector('#root');
-const root = createRoot(container);
+const root = createRoot(document.querySelector('#app'));
 root.render(<App />);

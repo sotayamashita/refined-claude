@@ -1,4 +1,4 @@
-import {createElement, useState} from 'react';
+import {createElement} from 'react';
 import {createRoot} from 'react-dom/client';
 import {TemplateButton} from './components/template-button.js';
 import {TemplateDropdown} from './components/template-dropdown.js';
@@ -52,42 +52,20 @@ async function initializeTemplateButton() {
 	}
 
 	// Create container for React root
-	const templateContainer = document.createElement('div');
-	templateContainer.id = 'template-button-root';
-	targetContainer.append(templateContainer);
+	const container = document.createElement('div');
+	container.id = 'refined-claude-container';
+	document.body.append(container);
 
-	// Create React root and render TemplateButton
-	const root = createRoot(templateContainer);
-
-	const [showDropdown, setShowDropdown] = useState(false);
-	const [dropdownPosition, setDropdownPosition] = useState({});
-
-	const handleToggleDropdown = event => {
-		event.stopPropagation();
-
-		if (!showDropdown) {
-			const buttonRect = event.currentTarget.getBoundingClientRect();
-			setDropdownPosition({
-				transform: `translate(${buttonRect.left}px, ${buttonRect.top - 265 - 4}px)`,
-			});
-		}
-
-		setShowDropdown(!showDropdown);
-	};
-
+	// Create React root and render components
+	const root = createRoot(container);
 	root.render(
 		<>
-			<TemplateButton onToggleDropdown={handleToggleDropdown} />
-			{showDropdown && (
-				<TemplateDropdown
-					position={dropdownPosition}
-					onClose={() => setShowDropdown(false)}
-				/>
-			)}
+			<TemplateButton />
+			<TemplateDropdown />
 		</>,
 	);
 
-	console.log('Template button initialized and added to:', targetContainer);
+	console.log('Template components initialized and added to document body');
 }
 
 // Initialize when page is ready
