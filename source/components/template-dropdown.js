@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import {getSettings} from '../options-storage.js';
 
 export const TemplateDropdown = ({onClose, position}) => {
@@ -9,6 +9,7 @@ export const TemplateDropdown = ({onClose, position}) => {
 			const settings = await getSettings();
 			setTemplates(settings.templates || []);
 		};
+
 		loadTemplates();
 	}, []);
 
@@ -19,6 +20,7 @@ export const TemplateDropdown = ({onClose, position}) => {
 			textarea.value = template.content;
 			textarea.dispatchEvent(new Event('input', {bubbles: true}));
 		}
+
 		onClose();
 	};
 

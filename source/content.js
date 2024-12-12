@@ -1,7 +1,7 @@
-import React from 'react';
+import {createElement, useState} from 'react';
 import {createRoot} from 'react-dom/client';
-import {TemplateButton} from './components/template-button';
-import {TemplateDropdown} from './components/template-dropdown';
+import {TemplateButton} from './components/template-button.js';
+import {TemplateDropdown} from './components/template-dropdown.js';
 
 // Helper functions
 function waitForElement(selector, timeout = 5000) {
@@ -54,13 +54,13 @@ async function initializeTemplateButton() {
 	// Create container for React root
 	const templateContainer = document.createElement('div');
 	templateContainer.id = 'template-button-root';
-	targetContainer.appendChild(templateContainer);
+	targetContainer.append(templateContainer);
 
 	// Create React root and render TemplateButton
 	const root = createRoot(templateContainer);
 
-	const [showDropdown, setShowDropdown] = React.useState(false);
-	const [dropdownPosition, setDropdownPosition] = React.useState({});
+	const [showDropdown, setShowDropdown] = useState(false);
+	const [dropdownPosition, setDropdownPosition] = useState({});
 
 	const handleToggleDropdown = event => {
 		event.stopPropagation();

@@ -20,7 +20,12 @@
       "webextensions"
     ],
     "rules": {
-      "unicorn/prefer-top-level-await": "off"
+      "unicorn/prefer-top-level-await": "off",
+      "import/no-unassigned-import": "off",
+      "no-unused-vars": ["error", { "varsIgnorePattern": "^(React|Template.*|create.*|App|.*Element)$" }],
+      "import/order": ["error", {
+        "groups": ["builtin", "external", "parent", "sibling", "index"]
+      }]
     }
   },
   "stylelint": {

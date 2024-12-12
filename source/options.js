@@ -1,10 +1,10 @@
-// eslint-disable-next-line import/no-unassigned-import
 import React from 'react';
 import {createRoot} from 'react-dom/client';
+import {TemplateForm} from './components/template-form.js';
 import 'webext-base-css';
 import './options.css';
-import {TemplateForm} from './components/template-form';
 
+// Main App component
 const App = () => (
 	<div className='detail-view-container'>
 		<h1>Refined Claude Settings</h1>
@@ -18,5 +18,6 @@ const App = () => (
 );
 
 // Initialize React app
-const root = createRoot(document.querySelector('#root'));
+const container = document.querySelector('#root');
+const root = createRoot(container);
 root.render(<App />);

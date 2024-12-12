@@ -1,4 +1,4 @@
-import React from 'react';
+import {createElement} from 'react';
 
 export const TemplateButton = ({onToggleDropdown}) => (
 	<div className='flex items-center min-w-0 max-w-full'>

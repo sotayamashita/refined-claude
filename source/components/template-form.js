@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import {getSettings, saveSettings} from '../options-storage.js';
 
 export const TemplateForm = () => {
@@ -11,11 +11,12 @@ export const TemplateForm = () => {
 			const settings = await getSettings();
 			setTemplates(settings.templates || []);
 		};
+
 		loadTemplates();
 	}, []);
 
-	const handleSubmit = async e => {
-		e.preventDefault();
+	const handleSubmit = async event => {
+		event.preventDefault();
 		if (!newTemplate.title || !newTemplate.content) {
 			setMessage('Please fill in both title and content');
 			return;
@@ -56,7 +57,7 @@ export const TemplateForm = () => {
 						type='text'
 						id='templateTitle'
 						value={newTemplate.title}
-						onChange={e => setNewTemplate({...newTemplate, title: e.target.value})}
+						onChange={event => setNewTemplate({...newTemplate, title: event.target.value})}
 						className='form-control'
 					/>
 				</div>
@@ -65,7 +66,7 @@ export const TemplateForm = () => {
 					<textarea
 						id='templateContent'
 						value={newTemplate.content}
-						onChange={e => setNewTemplate({...newTemplate, content: e.target.value})}
+						onChange={event => setNewTemplate({...newTemplate, content: event.target.value})}
 						className='form-control'
 						rows='4'
 					/>
