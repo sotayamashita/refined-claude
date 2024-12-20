@@ -1,4 +1,4 @@
-import {test, expect} from './fixtures';
+import {test, expect} from './extention-fixtures';
 
 test.describe('Chrome Extension Options Page', () => {
 	test('should load options page', async ({page, extensionId, optionsPage}) => {

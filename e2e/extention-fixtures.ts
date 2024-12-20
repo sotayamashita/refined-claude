@@ -12,8 +12,10 @@ export const test = base.extend<{
 		const context = await chromium.launchPersistentContext('', {
 			headless: false,
 			args: [
-				`--disable-extensions-except=${pathToExtension}`,
-				`--load-extension=${pathToExtension}`,
+					// Enable headless mode when running in CI environment, otherwise run with browser UI
+					process.env.CI ? `--headless=new` : '',
+					`--disable-extensions-except=${pathToExtension}`,
+					`--load-extension=${pathToExtension}`,
 			],
 		});
 		await use(context);
