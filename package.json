@@ -21,7 +21,11 @@
     ],
     "rules": {
       "unicorn/prefer-top-level-await": "off"
-    }
+    },
+    "ignores": [
+      "playwright.config.js",
+      "e2e/**"
+    ]
   },
   "stylelint": {
     "extends": [

@@ -1,5 +1,7 @@
 # browser-extension-template
 
+[![XO code style](https://shields.io/badge/code_style-5ed9c7?logo=xo&labelColor=gray&logoSize=auto&logoWidth=20)](https://github.com/xojs/xo)
+
 [![Test](https://github.com/sotayamashita/refined-claude/actions/workflows/test.yml/badge.svg)](https://github.com/sotayamashita/refined-claude/actions/workflows/test.yml)
 
 [link-rgh]: https://github.com/sindresorhus/refined-github
