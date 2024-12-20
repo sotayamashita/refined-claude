@@ -19,9 +19,6 @@ jobs:
         with:
           node-version: lts/*
           cache: "npm"
-          # Used to specify the path to a dependency file
-          # See: https://github.com/actions/setup-node#caching-packages-dependencies
-          cache-dependency-path: "nodejs/package-lock.json"
       - run: npm install
       - run: npm test
       - name: Get Playwright version
